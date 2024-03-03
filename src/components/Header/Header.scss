@@ -1,0 +1,14 @@
+.header{
+    background-color: yellow;
+    height: 70px;
+    overflow-y: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.header__logo{
+    height: 64px;
+    width: 200px;
+}
