@@ -13,13 +13,13 @@ function App () {
     <div className='app-recibo'>
       <Header/>
       <div className='app-recibo__content'>
-          {/* <FormInitialWapper/> */}
-          {/* <FormItem/>
-          <WrapperPago/> */}
+          <FormInitialWapper/>
+          <FormItem/>
+          <WrapperPago/>
           {/* <FormCheque/> */}
-          <PDFViewer style={{ width: '800px', height: '740px' }}>
+          {/* <PDFViewer style={{ width: '800px', height: '740px' }}>
             <Recibo/>
-        </PDFViewer>
+        </PDFViewer> */}
       </div>
     </div>
     </ReciboProvider>
