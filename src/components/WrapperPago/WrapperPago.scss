@@ -1,0 +1,18 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper-pago{
+    margin-top: 50px;
+    div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: gainsboro;
+        select{
+            height: 70%;
+        }
+    }
+}

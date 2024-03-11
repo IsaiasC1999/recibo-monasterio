@@ -3,6 +3,7 @@ import FormCheque from '../FormCheque/FormCheque'
 import FormTransfe from '../FormTransfe/FormTransfe'
 import FormEfectivo from '../FormEfectivo/FormEfectivo'
 import FormOtro from '../FormOtro/FormOtro'
+import '../WrapperPago/WrapperPago.scss'
 
 function WrapperPago () {
   const [selectForm, setSelectForm] = useState('')
@@ -26,7 +27,7 @@ function WrapperPago () {
   return (
         <section className="wrapper-pago">
                <div>
-                    <p>FORMA DE PAGO</p>
+                    <h2 className='title'>FORMA DE PAGO</h2>
                     <select name="select-pago" onChange={ (e) => setSelectForm(e.target.value) } value={selectForm} className="select-pago" >
                         <option value="">Seleccionar</option>
                         <option value="CHEQUE">CHEQUE</option>

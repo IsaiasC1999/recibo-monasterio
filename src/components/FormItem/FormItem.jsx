@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { ReciboContext } from '../../context/ReciboContext'
+import '../FormItem/FormItem.scss'
 
 function FormItem () {
   const { comprobanteCancelados, setComprobanteCancelados } = useContext(ReciboContext)
@@ -15,11 +16,11 @@ function FormItem () {
   }
 
   return (
-      <div className="form-item-wrapper">
-          <div className="form-item-wrapper__title">
-              <p>COMPROBANTES CANCELADOS</p>
+      <div className="form-item-wrapper cuerpo">
+          <div className="form-item-wrapper__title title">
+              <h2>COMPROBANTES CANCELADOS</h2>
           </div>
-          <form onSubmit={hanglerSubmit}>
+          <form onSubmit={hanglerSubmit} className='formulario'>
               <div className="input-group">
                   <label>Fecha</label>
                   <input name='fecha' type="text" />

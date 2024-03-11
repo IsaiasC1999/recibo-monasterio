@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.cuerpo{
+    .title{
+        background-color: gainsboro;
+    }
+    .formulario{
+        display: flex;
+        .input-group{
+            input{
+                border: 0px solid white;
+                border-bottom: 2px solid aqua;
+            }
+        }
+    }
+}

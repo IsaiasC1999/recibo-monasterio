@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { ReciboContext } from '../../context/ReciboContext'
+import './FormCheque.scss'
 
 function FormCheque () {
   const { formPago, setFormPago } = useContext(ReciboContext)
