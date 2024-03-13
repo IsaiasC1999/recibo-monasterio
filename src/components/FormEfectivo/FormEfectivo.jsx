@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { ReciboContext } from '../../context/ReciboContext'
+import '../FormEfectivo/FormEfectivo.scss'
 // eslint-disable-next-line padded-blocks
 function FormEfectivo () {
 
@@ -34,7 +35,7 @@ function FormEfectivo () {
               </div>
               <button>AGREGAR ITEM</button>
           </form>
-          <p>Total: 123123</p>
+          <p>Total: 12312</p>
       </>
   )
 }

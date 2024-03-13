@@ -6,13 +6,25 @@
 
 .wrapper-pago{
     margin-top: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     div{
-        display: flex;
-        justify-content: center;
-        align-items: center;
         background-color: gainsboro;
+        border-radius: 5px;
+        width: 90%;
+        display: flex;
+        align-items: center;
+        h2{
+            width: 100%;
+            text-align: center;
+        }
         select{
-            height: 70%;
+            border: 1px solid #172169;
+            border-radius: 5px;
+            color: #172169;
+            height: 80%;
         }
     }
 }

@@ -1,0 +1,48 @@
+.form-cheque{
+    width: 90%;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: auto;
+    gap: 0px 0px;
+    grid-template-areas: 
+    'form_cheque form_monto'
+    'button';
+.form_cheque{
+    display: flex;
+    width: 100%;
+    .input-group{
+        flex-direction: column;
+        width: 100%;
+        label{
+            width: 81%;
+            text-align: start;
+            font-weight: 500;
+        }
+        input{
+            border: 0px solid white;
+            border-bottom: 2px solid aqua;
+        }
+    }
+}
+.form_monto{
+    display: flex;
+    flex-direction: column;
+}
+label{
+    text-align: start;
+}
+input{
+    border: 0px solid white;
+    border-bottom: 2px solid aqua;
+}
+button{
+    border: 1px solid blue;
+    border-radius: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 20%;
+    background-color: blue;
+    color: yellow;
+    margin-top: 10px;
+}
+}

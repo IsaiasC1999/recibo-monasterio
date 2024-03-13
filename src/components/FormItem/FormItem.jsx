@@ -21,27 +21,29 @@ function FormItem () {
               <h2>COMPROBANTES CANCELADOS</h2>
           </div>
           <form onSubmit={hanglerSubmit} className='formulario'>
-              <div className="input-group">
+            <div className="input-item">
+            <div className="input-group input_item">
                   <label>Fecha</label>
                   <input name='fecha' type="text" />
               </div>
-              <div className="input-group">
+              <div className="input-group input_item">
                   <label>TIPO</label>
                   <input name='tipo' type="text" />
               </div>
-              <div className="input-group">
+              <div className="input-group input_item">
                   <label>Numero</label>
                   <input name='numero' type="text" />
               </div>
-              <div className="input-group">
+              <div className="input-group input_item">
                   <label>Total</label>
                   <input name='total' type="text" />
               </div>
-              <div className="input-group">
+            </div>
+              <div className="input-group input_pago">
                   <label>Monto pago</label>
                   <input name="montoPago" type="text" />
               </div>
-              <button>AGREGAR ITEM</button>
+              <button className='button'>AGREGAR ITEM</button>
           </form>
       </div>
   )
