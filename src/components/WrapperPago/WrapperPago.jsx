@@ -1,11 +1,13 @@
-import { useState } from 'react'
+import { useContext } from 'react'
 import FormCheque from '../FormCheque/FormCheque'
 import FormTransfe from '../FormTransfe/FormTransfe'
 import FormEfectivo from '../FormEfectivo/FormEfectivo'
 import FormOtro from '../FormOtro/FormOtro'
+import { ReciboContext } from '../../context/ReciboContext'
 
 function WrapperPago () {
-  const [selectForm, setSelectForm] = useState('')
+  const { selectForm, setSelectForm } = useContext(ReciboContext)
+
   console.log(selectForm)
 
   function FormSelect () {

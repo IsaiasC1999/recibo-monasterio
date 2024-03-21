@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer'
 import logo from '../../assets/logo-monaterio.png'
 
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
   // header presupuesto
   headerPresupuesto: {
     height: '15%',
-    borderBottom: '1px solid #000',
+    // borderBottom: '1px solid #000',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -29,11 +30,13 @@ const styles = StyleSheet.create({
   },
 
   comprobantesCancelados: {
-
+    maxHeight: '220px',
+    minHeight: '220px'
+    // backgroundColor: 'yellow'
   },
 
   titleComproCancelados: {
-    marginTop: '50px',
+    marginTop: '30px',
     border: '1.5px solid black',
     width: '85%',
     marginLeft: 'auto',
@@ -48,11 +51,13 @@ const styles = StyleSheet.create({
   },
 
   formaDePagoSection: {
-
+    maxHeight: '250px',
+    minHeight: '250px'
+    // backgroundColor: 'yellow'
   },
 
   titleFormaDePago: {
-    marginTop: '50px',
+    marginTop: '30px',
     border: '1.5px solid black',
     width: '85%',
     marginLeft: 'auto',
@@ -63,7 +68,25 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
 
-  // lo viejo de aqui pa abajo
+  // Firma estilos
+
+  firma: {
+    marginLeft: 'auto',
+    marginRight: '30px',
+    marginTop: '50px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  // Fotter
+
+  footer: {
+    marginTop: '50px',
+    borderTop: '1.5px solid black'
+  },
+
+  // lo viejo de aqui pa abajo ----------------------------------------------------------------------------------------------
 
   // parte izquierda
   logoPresu: {
@@ -136,7 +159,8 @@ const styles = StyleSheet.create({
     borderCollapse: 'collapse',
     marginBottom: 10,
     marginLeft: 'auto',
-    marginRight: 'auto'
+    marginRight: 'auto',
+    marginTop: '15px'
   },
   tableRow: {
     flexDirection: 'row',
@@ -144,28 +168,135 @@ const styles = StyleSheet.create({
     // borderBottomColor: '#000',
     borderStyle: 'solid',
     fontFamily: 'Helvetica-Bold'
+    // backgroundColor: 'blue'
   },
   tableCell: {
     width: '28%',
     padding: 8,
     textAlign: 'left',
     fontSize: '8px'
+    // backgroundColor: 'red'
   },
   tableRowBody: {
-    flexDirection: 'row'
-    // backgroundColor: 'red'
+    flexDirection: 'row',
+    // backgroundColor: 'purple',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
 
   },
   tableCellBody: {
     width: '28%',
-    padding: 5,
+    height: '15px',
+    paddingTop: '2',
     textAlign: 'left',
-    fontSize: '9px'
+    fontSize: '9px',
+    backgroundColor: 'red'
+    // backgroundColor: 'orange'
+
   }
 
 })
 
-function Recibo () {
+function Recibo ({ fecha, destinatario, comprobanteCancelados, selectForm, formPago }) {
+  function FormSelect () {
+    switch (selectForm) {
+      case 'CHEQUE':
+        return (
+          <>
+            <View style={styles.tableRow}>
+              <Text style={styles.tableCell}>CHEQUE</Text>
+              <Text style={styles.tableCell}>SUCURSAL</Text>
+              {/* <Text style={{ width: '270px', padding: 5, textAlign: 'left', fontSize: '8px', marginTop: '3px' }}>Número</Text> */}
+              <Text style={styles.tableCell}>NUMERO</Text>
+              <Text style={styles.tableCell}>P/</Text>
+              <Text style={styles.tableCell}>Monto pago</Text>
+            </View>
+            {
+               formPago.lenght <= 0
+                 ? 'no datos'
+                 : formPago.map(ele =>
+                <View key={'sdasdas'} style={styles.tableRowBody}>
+                  <Text style={styles.tableCellBody}>{ele.cheque}</Text>
+                  <Text style={styles.tableCellBody}>{ele.sucursal}</Text>
+                  <Text style={styles.tableCellBody}>{ele.numero}</Text>
+                  <Text style={styles.tableCellBody}>{ele.pe}</Text>
+                  <Text style={styles.tableCellBody}>{ele.montoPagar}</Text>
+                </View>)
+            }
+          </>
+        )
+      case 'TRANSFERENCIA':
+        return (
+
+          <>
+            <View style={styles.tableRow}>
+              <Text style={styles.tableCell}>TRANFERENCIA A BANCO</Text>
+              <Text style={styles.tableCell}>SUCURSAL</Text>
+              <Text style={styles.tableCell}>NUMERO</Text>
+              <Text style={styles.tableCell}>CUENTA N°</Text>
+              <Text style={styles.tableCell}>MONTO PAGO</Text>
+            </View>
+            {
+               formPago.lenght <= 0
+                 ? 'no datos'
+                 : formPago.map(ele =>
+                <View key={'sdasdas'} style={styles.tableRowBody}>
+                  <Text style={styles.tableCellBody}>{ele.tranferenciaBanco}</Text>
+                  <Text style={styles.tableCellBody}>{ele.sucursal}</Text>
+                  <Text style={styles.tableCellBody}>{ele.cuentaNro}</Text>
+                  <Text style={styles.tableCellBody}>{ele.montoPago}</Text>
+                </View>)
+            }
+          </>
+        )
+      case 'EFECTIVO':
+        return (
+            <>
+          <View style={styles.tableRow}>
+            <Text style={styles.tableCell}>EFECTIVO</Text>
+            <Text style={styles.tableCell}>TIPO MONEDA</Text>
+            <Text style={styles.tableCell}>COTIZACION</Text>
+            <Text style={styles.tableCell}>MONTO DE PAGO</Text>
+          </View>
+          {
+            formPago.lenght <= 0
+              ? 'no datos'
+              : formPago.map(ele =>
+             <View key={'sdasdas'} style={styles.tableRowBody}>
+               <Text style={styles.tableCellBody}>{ele.efectivo}</Text>
+               <Text style={styles.tableCellBody}>{ele.tipoMoneda}</Text>
+               <Text style={styles.tableCellBody}>{ele.cotizacion}</Text>
+               <Text style={styles.tableCellBody}>{ele.montoPago}</Text>
+             </View>)
+         }
+         </>
+        )
+      case 'OTROS':
+        return (
+          <>
+            <View style={styles.tableRow}>
+              <Text style={styles.tableCell}>DESCRIPCION</Text>
+              <Text style={styles.tableCell}>MONTO PAGAR</Text>
+            </View>
+
+            {
+              formPago.lenght <= 0
+                ? 'no datos'
+                : formPago.map(ele =>
+                  <View key={'sdasdas'} style={styles.tableRowBody}>
+                    <Text style={styles.tableCellBody}>{ele.descripcion}</Text>
+                    <Text style={styles.tableCellBody}>{ele.montoPago}</Text>
+                  </View>)
+            }
+
+          </>
+        )
+      default:
+        return ''
+    }
+  }
+
   return (
     <Document style={styles.page}>
       <Page size="A4">
@@ -187,12 +318,12 @@ function Recibo () {
             <View style={{ marginRight: '25px' }}>
               <Text style={{ fontSize: '15px' }} >RECIBO</Text>
               <Text style={{ fontSize: '12px' }}>N°: 0000-00026931</Text>
-              <Text style={{ fontSize: '12px' }} >Fecha: 08/11/2023</Text>
+              <Text style={{ fontSize: '12px' }} >Fecha: {fecha}</Text>
             </View>
           </View>
           {/* COMPROBANTES CANCELADOS */}
           <View style={styles.comprobantesCancelados}>
-            <Text style={{ fontSize: '11px' }}>Sres: LEMASE S.R.L</Text>
+            <Text style={{ fontSize: '9px' }}>Sres:{destinatario}</Text>
             <View style={styles.titleComproCancelados}>
               <Text style={{}}>COMPROBANTES CANCELADOS</Text>
             </View>
@@ -206,23 +337,25 @@ function Recibo () {
                   <Text style={styles.tableCell}>Monto pago</Text>
 
                 </View>
-
-                <View key={'sdasdas'} style={styles.tableRowBody}>
-                  <Text style={styles.tableCellBody}>28/10/2023</Text>
+                 {
+                  comprobanteCancelados.lenght <= 0
+                    ? 'no datos'
+                    : comprobanteCancelados.map(ele =>
+                    <View key={'sdasdas'} style={styles.tableRowBody}>
+                  <Text style={styles.tableCellBody}>{ele.fecha}</Text>
+                  <Text style={styles.tableCellBody}>{ele.montoPago}</Text>
+                  <Text style={{ width: '270px', padding: 5, textAlign: 'left', fontSize: '9px' }}>{ele.numero}</Text>
+                  <Text style={styles.tableCellBody}>{ele.total}</Text>
+                  <Text style={styles.tableCellBody}>{ele.montoPago}</Text>
+                </View>
+                    )}
+                {/* <View key={'sdasdas'} style={styles.tableRowBody}>
+                  <Text style={styles.tableCellBody}>{comprobanteCancelados[0] ? comprobanteCancelados[0].fecha : 'nada' }</Text>
                   <Text style={styles.tableCellBody}>FA</Text>
                   <Text style={{ width: '270px', padding: 5, textAlign: 'left', fontSize: '9px' }}>0001-00043513</Text>
                   <Text style={styles.tableCellBody}>$431.032,00</Text>
                   <Text style={styles.tableCellBody}>$431.032,00</Text>
-
-                </View>
-                <View key={'sdasdasasdas'} style={styles.tableRowBody}>
-                  <Text style={styles.tableCellBody}>28/10/2023</Text>
-                  <Text style={styles.tableCellBody}>FA</Text>
-                  <Text style={{ width: '270px', padding: 5, textAlign: 'left', fontSize: '9px' }}>0001-00043513</Text>
-                  <Text style={styles.tableCellBody}>$431.032,00</Text>
-                  <Text style={styles.tableCellBody}>$431.032,00</Text>
-
-                </View>
+                </View> */}
 
               </View>
             </View>
@@ -234,34 +367,51 @@ function Recibo () {
               <View style={styles.titleFormaDePago}>
                 <Text>FORMA DE PAGO</Text>
               </View>
-              <View>
+              <View style={{ marginTop: '15px' }}>
                 <View style={styles.table}>
-                  <View style={styles.tableRow}>
-                    <Text style={styles.tableCell}>Fecha</Text>
-                    <Text style={styles.tableCell}>TIPO</Text>
-                    <Text style={{ width: '270px', padding: 5, textAlign: 'left', fontSize: '8px', marginTop: '3px' }}>Número</Text>
-                    <Text style={styles.tableCell}>Total</Text>
-                    <Text style={styles.tableCell}>Monto pago</Text>
 
-                  </View>
+                    {FormSelect()}
 
-                  <View key={'sdasdas'} style={styles.tableRowBody}>
+                  {/* <View key={'sdasdas'} style={styles.tableRowBody}>
                     <Text style={styles.tableCellBody}>28/10/2023</Text>
                     <Text style={styles.tableCellBody}>FA</Text>
                     <Text style={{ width: '270px', padding: 5, textAlign: 'left', fontSize: '9px' }}>0001-00043513</Text>
                     <Text style={styles.tableCellBody}>$431.032,00</Text>
                     <Text style={styles.tableCellBody}>$431.032,00</Text>
 
-                  </View>
-                  <View key={'sdasdasasdas'} style={styles.tableRowBody}>
+                  </View> */}
+                  {/* <View key={'sdasdasasdas'} style={styles.tableRowBody}>
                     <Text style={styles.tableCellBody}>28/10/2023</Text>
                     <Text style={styles.tableCellBody}>FA</Text>
                     <Text style={{ width: '270px', padding: 5, textAlign: 'left', fontSize: '9px' }}>0001-00043513</Text>
                     <Text style={styles.tableCellBody}>$431.032,00</Text>
                     <Text style={styles.tableCellBody}>$431.032,00</Text>
 
-                  </View>
+                  </View> */}
+                  {/* <View key={'sdasdasasdas'} style={styles.tableRowBody}>
+                    <Text style={styles.tableCellBody}>28/10/2023</Text>
+                    <Text style={styles.tableCellBody}>FA</Text>
+                    <Text style={{ width: '270px', padding: 5, textAlign: 'left', fontSize: '9px' }}>0001-00043513</Text>
+                    <Text style={styles.tableCellBody}>$431.032,00</Text>
+                    <Text style={styles.tableCellBody}>$431.032,00</Text>
 
+                  </View> */}
+                  {/* <View key={'sdasdasasdas'} style={styles.tableRowBody}>
+                    <Text style={styles.tableCellBody}>28/10/2023</Text>
+                    <Text style={styles.tableCellBody}>FA</Text>
+                    <Text style={{ width: '270px', padding: 5, textAlign: 'left', fontSize: '9px' }}>0001-00043513</Text>
+                    <Text style={styles.tableCellBody}>$431.032,00</Text>
+                    <Text style={styles.tableCellBody}>$431.032,00</Text>
+
+                  </View> */}
+                  {/* <View key={'sdasdasasdas'} style={styles.tableRowBody}>
+                    <Text style={styles.tableCellBody}>28/10/2023</Text>
+                    <Text style={styles.tableCellBody}>FA</Text>
+                    <Text style={{ width: '270px', padding: 5, textAlign: 'left', fontSize: '9px' }}>0001-00043513</Text>
+                    <Text style={styles.tableCellBody}>$431.032,00</Text>
+                    <Text style={styles.tableCellBody}>$431.032,00</Text>
+
+                  </View> */}
                 </View>
               </View>
               <Text style={{ fontSize: '10px', marginLeft: 'auto', marginRight: '45px' }}>TOTAL : 568.093,66</Text>
@@ -269,9 +419,17 @@ function Recibo () {
           </View>
           {/* MONTO EN PESOS ESCRITO */}
           <View style={{ marginTop: '60px' }}>
-            <Text style={{ fontSize: '11px', textAlign: 'center' }}>SON PESOS: un millón ochenta y dos mil setecientos treinta y cinco pesos con setenta y cuatro centavos</Text>
+            <Text style={{ fontSize: '9px', textAlign: 'center' }}>SON PESOS: un millón ochenta y dos mil setecientos treinta y cinco pesos con setenta y cuatro centavos</Text>
           </View>
-
+          {/* FIRMA */}
+          <View style={styles.firma}>
+            <View style={{ border: '1px solid black', width: '100px' }}></View>
+            <Text style={{ fontSize: '9px' }}>Firma Autoridades</Text>
+          </View>
+          {/* FOTER */}
+          <View style={styles.footer}>
+              <Text style={{ fontSize: '9px', textAlign: 'center', marginTop: '20px' }}>CASA CENTRAL: RN9 Km 1301, San Miguel de Tucumán, Tucumán.</Text>
+          </View>
         </View>
       </Page>
     </Document>

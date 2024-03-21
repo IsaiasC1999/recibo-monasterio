@@ -28,7 +28,7 @@ function FormTransfe () {
               </div>
               <div className="input-group">
                   <label>Monto pago</label>
-                  <input type="text" />
+                  <input name='montoPago' type="text" />
               </div>
               <button>AGREGAR ITEM</button>
           </form>

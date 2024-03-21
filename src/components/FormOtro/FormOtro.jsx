@@ -16,6 +16,11 @@ function FormOtro () {
                   <label>Descripcion</label>
                   <textarea name="descripcion" type="text" />
               </div>
+              <div className="input-group">
+                  <label>Monto Pago</label>
+                  <input name="montoPago" type="text" />
+              </div>
+              <button>AGREGAR ITEM</button>
         </form>
   )
 }

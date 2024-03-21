@@ -29,7 +29,7 @@ function FormCheque () {
               </div>
               <div className="input-group">
                   <label>P/</label>
-                  <input name="P/" type="text" />
+                  <input name="pe" type="text" />
               </div>
               <div className="input-group">
                   <label>Monto pago</label>
