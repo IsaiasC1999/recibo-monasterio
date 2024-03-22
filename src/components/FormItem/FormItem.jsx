@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { ReciboContext } from '../../context/ReciboContext'
+import TableComprobantes from '../TableComprobados/TableComprobantes'
 
 function FormItem () {
   const { comprobanteCancelados, setComprobanteCancelados } = useContext(ReciboContext)
@@ -42,6 +43,9 @@ function FormItem () {
               </div>
               <button>AGREGAR ITEM</button>
           </form>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+             {comprobanteCancelados.length === 0 ? null : <TableComprobantes/>}
+          </div>
       </div>
   )
 }
