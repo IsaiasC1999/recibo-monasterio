@@ -5,12 +5,12 @@
 }
 
 .wrapper-pago{
-    margin-top: 50px;
     width: 100%;
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    div{
+    .title_select{
         background-color: gainsboro;
         border-radius: 5px;
         width: 90%;
@@ -25,6 +25,14 @@
             border-radius: 5px;
             color: #172169;
             height: 80%;
+            option{
+                font-weight: 600;
+            }
         }
     }
-}
+    .div-padre{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+}  

@@ -15,28 +15,27 @@ function FormEfectivo () {
   }
 
   return (
-      <>
-          <form onSubmit={hanglerSubmit}>
-              <div className="input-group">
+          <form onSubmit={hanglerSubmit} className='formulario-cash'>
+            <div className="input-cash">
+              <div className="input-group group-cash">
                   <label>Efectivo</label>
                   <input name="efectivo" type="text" />
               </div>
-              <div className="input-group">
+              <div className="input-group group-cash">
                   <label>Tipo de moneda</label>
                   <input name="tipoMoneda" type="text" />
               </div>
-              <div className="input-group">
+              <div className="input-group group-cash">
                   <label>Cotizacion</label>
                   <input name="cotizacion" type="text" />
               </div>
-              <div className="input-group">
+              </div>
+              <div className="input-group pago-cash">
                   <label>Monto pago</label>
                   <input name='montoPago' type="text" />
               </div>
-              <button>AGREGAR ITEM</button>
+              <button className='button'>AGREGAR ITEM</button>
           </form>
-          <p>Total: 12312</p>
-      </>
   )
 }
 

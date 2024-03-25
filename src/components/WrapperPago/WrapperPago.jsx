@@ -26,17 +26,17 @@ function WrapperPago () {
 
   return (
         <section className="wrapper-pago">
-               <div>
+               <div className='title_select'>
                     <h2 className='title'>FORMA DE PAGO</h2>
                     <select name="select-pago" onChange={ (e) => setSelectForm(e.target.value) } value={selectForm} className="select-pago" >
                         <option value="">Seleccionar</option>
                         <option value="CHEQUE">CHEQUE</option>
-                        <option value="TRANSFERENCIA">TRASNFERENCIA</option>
+                        <option value="TRANSFERENCIA">TRANSFERENCIA</option>
                         <option value="EFECTIVO">EFECTIVO</option>
                         <option value="OTROS">OTROS</option>
                     </select>
                 </div>
-                <div>
+                <div className='div-padre'>
                     {FormSelect()}
                 </div>
         </section>

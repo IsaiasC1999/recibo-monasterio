@@ -1,5 +1,7 @@
 import { useContext } from 'react'
 import { ReciboContext } from '../../context/ReciboContext'
+import '../FormTransfe/FormTransfe.scss'
+
 function FormTransfe () {
   const { formPago, setFormPago } = useContext(ReciboContext)
 
@@ -12,28 +14,29 @@ function FormTransfe () {
   }
 
   return (
-      <>
-          <form onSubmit={hanglerSubmit}>
-              <div className="input-group">
+      <div className="cuerpo-transfer">
+          <form onSubmit={hanglerSubmit} className='formulario-transfer'>
+            <div className="input-transfer">
+              <div className="group-transfer">
                   <label>Tranferencia a banco</label>
                   <input name="tranferenciaBanco" type="text" />
               </div>
-              <div className="input-group">
+              <div className="group-transfer">
                   <label>Sucursal</label>
                   <input name="sucursal" type="text" />
               </div>
-              <div className="input-group">
+              <div className="group-transfer">
                   <label>Cuenta N°</label>
                   <input name="cuentaNro" type="text" />
               </div>
-              <div className="input-group">
+            </div>
+              <div className="pago-transfer">
                   <label>Monto pago</label>
                   <input type="text" />
               </div>
-              <button>AGREGAR ITEM</button>
+              <button className='button'>AGREGAR ITEM</button>
           </form>
-          <p>Total: 123123</p>
-      </>
+        </div>
   )
 }
 

@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { ReciboContext } from '../../context/ReciboContext'
+import '../FormOtro/FormOtro.scss'
 function FormOtro () {
   const { formPago, setFormPago } = useContext(ReciboContext)
   function hanglerSubmit (e) {
@@ -11,11 +12,16 @@ function FormOtro () {
   }
 
   return (
-        <form onSubmit={hanglerSubmit}>
-             <div className="input-group">
+        <form onSubmit={hanglerSubmit} className='formulario-otro'>
+             <div className="group-otro">
                   <label>Descripcion</label>
                   <textarea name="descripcion" type="text" />
               </div>
+              <div className='group-monto'>
+                  <label>Monto de pago</label>
+                  <input type="text" />
+              </div>
+              <a href="">Agregar item</a>
         </form>
   )
 }

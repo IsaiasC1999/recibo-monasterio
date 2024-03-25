@@ -14,8 +14,7 @@ function FormCheque () {
   }
 
   return (
-      <>
-        <section>
+        <section className='cuerpo-cheque'>
           <form onSubmit={hanglerSubmit} className='form-cheque'>
             <div className="form_cheque">
               <div className="input-group item">
@@ -43,7 +42,6 @@ function FormCheque () {
               <button>AGREGAR ITEM</button>
           </form>
         </section>
-      </>
   )
 }
 
