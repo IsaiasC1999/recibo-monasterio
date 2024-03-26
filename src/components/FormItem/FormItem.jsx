@@ -23,7 +23,7 @@ function FormItem () {
           <form onSubmit={hanglerSubmit}>
               <div className="input-group">
                   <label>Fecha</label>
-                  <input name='fecha' type="text" />
+                  <input name='fecha' type="date" />
               </div>
               <div className="input-group">
                   <label>TIPO</label>
@@ -35,11 +35,11 @@ function FormItem () {
               </div>
               <div className="input-group">
                   <label>Total</label>
-                  <input name='total' type="text" />
+                  <input name='total' type="number" />
               </div>
               <div className="input-group">
                   <label>Monto pago</label>
-                  <input name="montoPago" type="text" />
+                  <input name="montoPago" type="number" />
               </div>
               <button>AGREGAR ITEM</button>
           </form>

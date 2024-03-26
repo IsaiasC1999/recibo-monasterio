@@ -3,13 +3,14 @@ import { ReciboContext } from '../../context/ReciboContext'
 // eslint-disable-next-line padded-blocks
 function FormEfectivo () {
 
-  const { formPago, setFormPago } = useContext(ReciboContext)
+  const { formPago, setFormPago, selectForm } = useContext(ReciboContext)
 
   function hanglerSubmit (e) {
     e.preventDefault()
     const formData = new FormData(e.target)
     console.log(Object.fromEntries(formData))
     const data = Object.fromEntries(formData)
+    data.tipe = selectForm
     setFormPago([...formPago, data])
   }
 

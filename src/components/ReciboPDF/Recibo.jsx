@@ -190,8 +190,8 @@ const styles = StyleSheet.create({
     height: '15px',
     paddingTop: '2',
     textAlign: 'left',
-    fontSize: '9px',
-    backgroundColor: 'red'
+    fontSize: '9px'
+    // backgroundColor: 'red'
     // backgroundColor: 'orange'
 
   }
@@ -199,103 +199,169 @@ const styles = StyleSheet.create({
 })
 
 function Recibo ({ fecha, destinatario, comprobanteCancelados, selectForm, formPago }) {
-  function FormSelect () {
-    switch (selectForm) {
+  // function FormSelect () {
+  //   switch (selectForm) {
+  //     case 'CHEQUE':
+  //       return (
+  //         <>
+  //           {
+  //              formPago.lenght <= 0
+  //                ? 'no datos'
+  //                : formPago.map(ele =>
+  //               <View key={'sdasdas'} style={styles.tableRowBody}>
+  //                 <Text style={styles.tableCellBody}>Cheque {ele.cheque}</Text>
+  //                 <Text style={styles.tableCellBody}>Suc {ele.sucursal}</Text>
+  //                 <Text style={styles.tableCellBody}>N° {ele.numero}</Text>
+  //                 <Text style={styles.tableCellBody}>P/{ele.pe}</Text>
+  //                 <Text style={styles.tableCellBody}>{ele.montoPagar}</Text>
+  //               </View>)
+  //           }
+  //         </>
+  //       )
+  //     case 'TRANSFERENCIA':
+  //       return (
+
+  //         <>
+
+  //           {
+  //              formPago.lenght <= 0
+  //                ? 'no datos'
+  //                : formPago.map(ele =>
+  //               <View key={'sdasdas'} style={styles.tableRowBody}>
+  //                 <Text style={styles.tableCellBody}>TRANFERENCIA {ele.tranferenciaBanco}</Text>
+  //                 <Text style={styles.tableCellBody}>Suc{ele.sucursal}</Text>
+  //                 <Text style={styles.tableCellBody}>{ele.cuentaNro}</Text>
+  //                 <Text style={styles.tableCellBody}>{ele.montoPago}</Text>
+  //               </View>)
+  //           }
+  //         </>
+  //       )
+  //     case 'EFECTIVO':
+  //       return (
+  //           <>
+  //         <View style={styles.tableRow}>
+  //           <Text style={styles.tableCell}>EFECTIVO</Text>
+  //           <Text style={styles.tableCell}>TIPO MONEDA</Text>
+  //           <Text style={styles.tableCell}>COTIZACION</Text>
+  //           <Text style={styles.tableCell}>MONTO DE PAGO</Text>
+  //         </View>
+  //         {
+  //           formPago.lenght <= 0
+  //             ? 'no datos'
+  //             : formPago.map(ele =>
+  //            <View key={'sdasdas'} style={styles.tableRowBody}>
+  //              <Text style={styles.tableCellBody}>{ele.efectivo}</Text>
+  //              <Text style={styles.tableCellBody}>{ele.tipoMoneda}</Text>
+  //              <Text style={styles.tableCellBody}>{ele.cotizacion}</Text>
+  //              <Text style={styles.tableCellBody}>{ele.montoPago}</Text>
+  //            </View>)
+  //        }
+  //        </>
+  //       )
+  //     case 'OTROS':
+  //       return (
+  //         <>
+  //           <View style={styles.tableRow}>
+  //             <Text style={styles.tableCell}>DESCRIPCION</Text>
+  //             <Text style={styles.tableCell}>MONTO PAGAR</Text>
+  //           </View>
+
+  //           {
+  //             formPago.lenght <= 0
+  //               ? 'no datos'
+  //               : formPago.map(ele =>
+  //                 <View key={'sdasdas'} style={styles.tableRowBody}>
+  //                   <Text style={styles.tableCellBody}>{ele.descripcion}</Text>
+  //                   <Text style={styles.tableCellBody}>{ele.montoPago}</Text>
+  //                 </View>)
+  //           }
+
+  //         </>
+  //       )
+  //     default:
+  //       return ''
+  //   }
+  // }
+
+  function Total (formPago) {
+    let total = 0
+    formPago.forEach(ele => {
+      console.log(ele.montoPago)
+
+      total = total + parseInt(ele.montoPago)
+    })
+    console.log(total)
+    return total
+  }
+
+  function FormatPrecio (precio) {
+    const result = precio.toLocaleString('es-ar', {
+      style: 'currency',
+      currency: 'ARS',
+      minimumFractionDigits: 2
+    })
+
+    return result
+  }
+
+  function FormatPrecioItem (precio) {
+    // Redondear el precio a dos decimales
+    precio = Math.round(precio * 100) / 100
+
+    // Convertir el precio a una cadena con dos decimales
+    const precioStr = precio.toFixed(2)
+
+    // Obtener la parte entera y la parte decimal
+    let [parteEntera, parteDecimal] = precioStr.split('.')
+
+    // Formatear la parte entera con separadores de miles
+    parteEntera = parseInt(parteEntera).toLocaleString()
+
+    // Combinar la parte entera y la parte decimal en el formato final
+    const result = `$ ${parteEntera},${parteDecimal}`
+
+    return result
+  }
+
+  const arrayFormPago = formPago.map(ele => {
+    switch (ele.tipe) {
       case 'CHEQUE':
         return (
-          <>
-            <View style={styles.tableRow}>
-              <Text style={styles.tableCell}>CHEQUE</Text>
-              <Text style={styles.tableCell}>SUCURSAL</Text>
-              {/* <Text style={{ width: '270px', padding: 5, textAlign: 'left', fontSize: '8px', marginTop: '3px' }}>Número</Text> */}
-              <Text style={styles.tableCell}>NUMERO</Text>
-              <Text style={styles.tableCell}>P/</Text>
-              <Text style={styles.tableCell}>Monto pago</Text>
-            </View>
-            {
-               formPago.lenght <= 0
-                 ? 'no datos'
-                 : formPago.map(ele =>
-                <View key={'sdasdas'} style={styles.tableRowBody}>
-                  <Text style={styles.tableCellBody}>{ele.cheque}</Text>
-                  <Text style={styles.tableCellBody}>{ele.sucursal}</Text>
-                  <Text style={styles.tableCellBody}>{ele.numero}</Text>
-                  <Text style={styles.tableCellBody}>{ele.pe}</Text>
-                  <Text style={styles.tableCellBody}>{ele.montoPagar}</Text>
-                </View>)
-            }
-          </>
+          <View key={'sdasdas'} style={styles.tableRowBody}>
+          <Text style={styles.tableCellBody}>CHEQUE {ele.cheque}</Text>
+          <Text style={styles.tableCellBody}>Suc {ele.sucursal}</Text>
+          <Text style={styles.tableCellBody}>N° {ele.numero}</Text>
+          <Text style={styles.tableCellBody}>p/ {ele.pe}</Text>
+          <Text style={styles.tableCellBody}>{ele.montoPagar}</Text>
+        </View>
         )
       case 'TRANSFERENCIA':
         return (
-
-          <>
-            <View style={styles.tableRow}>
-              <Text style={styles.tableCell}>TRANFERENCIA A BANCO</Text>
-              <Text style={styles.tableCell}>SUCURSAL</Text>
-              <Text style={styles.tableCell}>NUMERO</Text>
-              <Text style={styles.tableCell}>CUENTA N°</Text>
-              <Text style={styles.tableCell}>MONTO PAGO</Text>
-            </View>
-            {
-               formPago.lenght <= 0
-                 ? 'no datos'
-                 : formPago.map(ele =>
-                <View key={'sdasdas'} style={styles.tableRowBody}>
-                  <Text style={styles.tableCellBody}>{ele.tranferenciaBanco}</Text>
-                  <Text style={styles.tableCellBody}>{ele.sucursal}</Text>
-                  <Text style={styles.tableCellBody}>{ele.cuentaNro}</Text>
-                  <Text style={styles.tableCellBody}>{ele.montoPago}</Text>
-                </View>)
-            }
-          </>
+          <View key={'sdasdas12312'} style={styles.tableRowBody}>
+          <Text style={styles.tableCellBody}>TRASF.BANCO { ele.tranferenciaBanco}</Text>
+          <Text style={styles.tableCellBody}>Suc {ele.sucursal}</Text>
+          <Text style={styles.tableCellBody}>cuenta N° {ele.cuentaNro}</Text>
+          <Text style={styles.tableCellBody}>{ele.montoPago}</Text>
+        </View>
         )
       case 'EFECTIVO':
         return (
-            <>
-          <View style={styles.tableRow}>
-            <Text style={styles.tableCell}>EFECTIVO</Text>
-            <Text style={styles.tableCell}>TIPO MONEDA</Text>
-            <Text style={styles.tableCell}>COTIZACION</Text>
-            <Text style={styles.tableCell}>MONTO DE PAGO</Text>
-          </View>
-          {
-            formPago.lenght <= 0
-              ? 'no datos'
-              : formPago.map(ele =>
-             <View key={'sdasdas'} style={styles.tableRowBody}>
-               <Text style={styles.tableCellBody}>{ele.efectivo}</Text>
-               <Text style={styles.tableCellBody}>{ele.tipoMoneda}</Text>
-               <Text style={styles.tableCellBody}>{ele.cotizacion}</Text>
-               <Text style={styles.tableCellBody}>{ele.montoPago}</Text>
-             </View>)
-         }
-         </>
-        )
-      case 'OTROS':
-        return (
-          <>
-            <View style={styles.tableRow}>
-              <Text style={styles.tableCell}>DESCRIPCION</Text>
-              <Text style={styles.tableCell}>MONTO PAGAR</Text>
-            </View>
-
-            {
-              formPago.lenght <= 0
-                ? 'no datos'
-                : formPago.map(ele =>
-                  <View key={'sdasdas'} style={styles.tableRowBody}>
-                    <Text style={styles.tableCellBody}>{ele.descripcion}</Text>
-                    <Text style={styles.tableCellBody}>{ele.montoPago}</Text>
-                  </View>)
-            }
-
-          </>
+            <View key={'sdasdas'} style={styles.tableRowBody}>
+               <Text style={styles.tableCellBody}>EFECTIVO {ele.efectivo}</Text>
+                <Text style={styles.tableCellBody}> tipo moneda {ele.tipoMoneda}</Text>
+                <Text style={styles.tableCellBody}> cotizacion {ele.cotizacion}</Text>
+                <Text style={styles.tableCellBody}>monto pago {ele.montoPago}</Text>
+              </View>
         )
       default:
-        return ''
+        return (
+                    <View key={'asdgfg32423'}>
+                        <Text>Número {ele.tipe}</Text>
+                        <Text>Sin coincidencia</Text>
+                    </View>
+        )
     }
-  }
+  })
 
   return (
     <Document style={styles.page}>
@@ -345,8 +411,8 @@ function Recibo ({ fecha, destinatario, comprobanteCancelados, selectForm, formP
                   <Text style={styles.tableCellBody}>{ele.fecha}</Text>
                   <Text style={styles.tableCellBody}>{ele.montoPago}</Text>
                   <Text style={{ width: '270px', padding: 5, textAlign: 'left', fontSize: '9px' }}>{ele.numero}</Text>
-                  <Text style={styles.tableCellBody}>{ele.total}</Text>
-                  <Text style={styles.tableCellBody}>{ele.montoPago}</Text>
+                  <Text style={styles.tableCellBody}>{FormatPrecioItem(ele.total)}</Text>
+                  <Text style={styles.tableCellBody}>{FormatPrecioItem(ele.montoPago)}</Text>
                 </View>
                     )}
                 {/* <View key={'sdasdas'} style={styles.tableRowBody}>
@@ -359,7 +425,7 @@ function Recibo ({ fecha, destinatario, comprobanteCancelados, selectForm, formP
 
               </View>
             </View>
-            <Text style={{ fontSize: '10px', marginLeft: 'auto', marginRight: '45px' }}>TOTAL : 568.093,66</Text>
+            <Text style={{ fontSize: '10px', marginLeft: 'auto', marginRight: '45px' }}>TOTAL : {FormatPrecio(Total(formPago))}</Text>
           </View>
           {/* FORMA DE PAGO */}
           <View>
@@ -370,8 +436,9 @@ function Recibo ({ fecha, destinatario, comprobanteCancelados, selectForm, formP
               <View style={{ marginTop: '15px' }}>
                 <View style={styles.table}>
 
-                    {FormSelect()}
-
+                    {/* {FormSelect()} */}
+                    {/* {FormPagoRender()} */}
+                    {arrayFormPago}
                   {/* <View key={'sdasdas'} style={styles.tableRowBody}>
                     <Text style={styles.tableCellBody}>28/10/2023</Text>
                     <Text style={styles.tableCellBody}>FA</Text>

@@ -2,29 +2,37 @@ import { useContext } from 'react'
 import { ReciboContext } from '../../context/ReciboContext'
 
 function TableComprobantes () {
-  const { comprobanteCancelados } = useContext(ReciboContext)
+  const { comprobanteCancelados, setComprobanteCancelados } = useContext(ReciboContext)
+
+  function DeleteItem (numero) {
+    const newItem = comprobanteCancelados.filter(ele => ele.numero !== numero)
+    console.log(newItem)
+    setComprobanteCancelados(newItem)
+  }
 
   return (
 
         <table>
             <thead>
                 <tr>
-                    <th>Fecha</th>
+                    <th>fecha</th>
                     <th>Tipo</th>
                     <th>Numero</th>
                     <th>Total</th>
                     <th>Monto Pago</th>
+                    <th>Opciones</th>
                 </tr>
             </thead>
           <tbody>
               {comprobanteCancelados.map(ele =>
 
                   <tr key={ele.numero}>
-                      <th>Fecha 1</th>
-                      <th>Tipo 1</th>
-                      <th>Numero 1</th>
-                      <th>Total 1</th>
-                      <th>Monto Pago 2</th>
+                      <th>{ele.fecha}</th>
+                      <th>{ele.tipo}</th>
+                      <th>{ele.numero}</th>
+                      <th>{ele.total}</th>
+                      <th>{ele.montoPago}</th>
+                      <th><button onClick={() => DeleteItem(ele.numero)}>Borrar</button></th>
                   </tr>
               )}
           </tbody>
@@ -34,25 +42,3 @@ function TableComprobantes () {
 }
 
 export default TableComprobantes
-
-{ /* <table>
-<thead>
-   <tr>
-       <th>Fecha</th>
-       <th>Tipo</th>
-       <th>Numero</th>
-       <th>Total</th>
-       <th>Monto Pago</th>
-   </tr>
-   </thead>
-<tbody>
-
- <tr>
-     <th>Fecha 1</th>
-     <th>Tipo 1</th>
-     <th>Numero 1</th>
-     <th>Total 1</th>
-     <th>Monto Pago 2</th>
- </tr>
-</tbody>
-</table> */ }

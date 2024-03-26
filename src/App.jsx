@@ -7,6 +7,7 @@ import WrapperPago from './components/WrapperPago/WrapperPago'
 import { ReciboContext } from './context/ReciboContext'
 import './styles/App.scss'
 import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer'
+import PruebaMap from './components/PruebaMap'
 function App () {
   const { destinatario, fecha, comprobanteCancelados, selectForm, formPago } = useContext(ReciboContext)
 
@@ -23,6 +24,7 @@ function App () {
         <PDFDownloadLink document={<Recibo destinatario={destinatario} fecha={fecha} formPago={formPago} comprobanteCancelados={comprobanteCancelados} selectForm={selectForm} />} fileName="somename.pdf" style={{ width: '800px', height: '740px' }}>
           Hola
         </PDFDownloadLink>
+        {/* <PruebaMap/> */}
       </div>
     </div>
 

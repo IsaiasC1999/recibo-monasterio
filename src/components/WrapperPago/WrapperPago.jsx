@@ -4,9 +4,10 @@ import FormTransfe from '../FormTransfe/FormTransfe'
 import FormEfectivo from '../FormEfectivo/FormEfectivo'
 import FormOtro from '../FormOtro/FormOtro'
 import { ReciboContext } from '../../context/ReciboContext'
+import TableFormaPago from '../TableFormaPago/TableFormaPago'
 
 function WrapperPago () {
-  const { selectForm, setSelectForm } = useContext(ReciboContext)
+  const { selectForm, setSelectForm, formPago } = useContext(ReciboContext)
 
   console.log(selectForm)
 
@@ -40,6 +41,9 @@ function WrapperPago () {
                 <div>
                     {FormSelect()}
                 </div>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        {formPago.length === 0 ? null : <TableFormaPago />}
+      </div>
         </section>
   )
 }
