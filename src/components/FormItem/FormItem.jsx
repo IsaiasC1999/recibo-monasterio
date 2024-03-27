@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { ReciboContext } from '../../context/ReciboContext'
 import '../FormItem/FormItem.scss'
+import TableComprobantes from '../TableComprobados/TableComprobantes'
 
 function FormItem () {
   const { comprobanteCancelados, setComprobanteCancelados } = useContext(ReciboContext)
@@ -24,7 +25,7 @@ function FormItem () {
             <div className="input-item">
             <div className="input-group input_item">
                   <label>Fecha</label>
-                  <input name='fecha' type="text" />
+                  <input name='fecha' type="date" />
               </div>
               <div className="input-group input_item">
                   <label>TIPO</label>
@@ -36,15 +37,18 @@ function FormItem () {
               </div>
               <div className="input-group input_item">
                   <label>Total</label>
-                  <input name='total' type="text" />
+                  <input name='total' type="number" />
               </div>
             </div>
               <div className="input-group input_pago">
                   <label>Monto pago</label>
-                  <input name="montoPago" type="text" />
+                  <input name="montoPago" type="number" />
               </div>
               <button className='button'>AGREGAR ITEM</button>
           </form>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+             {comprobanteCancelados.length === 0 ? null : <TableComprobantes/>}
+          </div>
       </div>
   )
 }

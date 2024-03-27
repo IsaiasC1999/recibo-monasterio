@@ -3,13 +3,14 @@ import { ReciboContext } from '../../context/ReciboContext'
 import '../FormCheque/FormCheque.scss'
 
 function FormCheque () {
-  const { formPago, setFormPago } = useContext(ReciboContext)
+  const { formPago, setFormPago, selectForm } = useContext(ReciboContext)
 
   function hanglerSubmit (e) {
     e.preventDefault()
     const formData = new FormData(e.target)
     console.log(Object.fromEntries(formData))
     const data = Object.fromEntries(formData)
+    data.tipe = selectForm
     setFormPago([...formPago, data])
   }
 
@@ -31,7 +32,7 @@ function FormCheque () {
               </div>
               <div className="input-group item">
                   <label>P/</label>
-                  <input name="P/" type="text" />
+                  <input name="pe" type="text" />
               </div>
             </div>
               <div className="input-group form_monto">

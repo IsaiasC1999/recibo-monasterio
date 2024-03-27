@@ -3,13 +3,14 @@ import { ReciboContext } from '../../context/ReciboContext'
 import '../FormTransfe/FormTransfe.scss'
 
 function FormTransfe () {
-  const { formPago, setFormPago } = useContext(ReciboContext)
+  const { formPago, setFormPago, selectForm } = useContext(ReciboContext)
 
   function hanglerSubmit (e) {
     e.preventDefault()
     const formData = new FormData(e.target)
     console.log(Object.fromEntries(formData))
     const data = Object.fromEntries(formData)
+    data.tipe = selectForm
     setFormPago([...formPago, data])
   }
 
@@ -32,7 +33,7 @@ function FormTransfe () {
             </div>
               <div className="pago-transfer">
                   <label>Monto pago</label>
-                  <input type="text" />
+                  <input name='montoPago' type="text" />
               </div>
               <button className='button'>AGREGAR ITEM</button>
           </form>

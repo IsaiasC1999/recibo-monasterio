@@ -7,9 +7,10 @@ export function ReciboProvider ({ children }) {
   const [fecha, setFecha] = useState('')
   const [comprobanteCancelados, setComprobanteCancelados] = useState([])
   const [formPago, setFormPago] = useState([])
+  const [selectForm, setSelectForm] = useState('')
 
   return (
-        <ReciboContext.Provider value={{ destinatario, fecha, comprobanteCancelados, formPago, setDestinatario, setFecha, setFormPago, setComprobanteCancelados }}>
+        <ReciboContext.Provider value={{ destinatario, fecha, comprobanteCancelados, formPago, selectForm, setDestinatario, setSelectForm, setFecha, setFormPago, setComprobanteCancelados }}>
             {children}
         </ReciboContext.Provider>
   )

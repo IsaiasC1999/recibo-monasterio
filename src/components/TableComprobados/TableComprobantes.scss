@@ -1,0 +1,19 @@
+table{
+	text-align: center;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td{
+	padding: 10px;
+}
+
+thead{
+	background-color: #FFDE1B;
+	border-bottom: solid 5px #172169;
+	color: #172169;
+}
+
+tr:nth-child(even){
+	background-color: gainsboro;
+}

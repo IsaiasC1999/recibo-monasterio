@@ -22,6 +22,11 @@ function FormOtro () {
                   <input type="text" />
               </div>
               <a href="">Agregar item</a>
+              <div className="input-group">
+                  <label>Monto Pago</label>
+                  <input name="montoPago" type="text" />
+              </div>
+              <button>AGREGAR ITEM</button>
         </form>
   )
 }

@@ -1,12 +1,15 @@
-import { useState } from 'react'
+import { useContext } from 'react'
 import FormCheque from '../FormCheque/FormCheque'
 import FormTransfe from '../FormTransfe/FormTransfe'
 import FormEfectivo from '../FormEfectivo/FormEfectivo'
 import FormOtro from '../FormOtro/FormOtro'
 import '../WrapperPago/WrapperPago.scss'
+import { ReciboContext } from '../../context/ReciboContext'
+import TableFormaPago from '../TableFormaPago/TableFormaPago'
 
 function WrapperPago () {
-  const [selectForm, setSelectForm] = useState('')
+  const { selectForm, setSelectForm, formPago } = useContext(ReciboContext)
+
   console.log(selectForm)
 
   function FormSelect () {
@@ -39,6 +42,9 @@ function WrapperPago () {
                 <div className='div-padre'>
                     {FormSelect()}
                 </div>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        {formPago.length === 0 ? null : <TableFormaPago />}
+      </div>
         </section>
   )
 }
